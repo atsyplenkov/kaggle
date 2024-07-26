@@ -1,6 +1,6 @@
 # House Prices - Advanced Regression Techniques
 
-My first contribution to Kaggle competitions. As of 2024-07-27, I am on 774 position out of 4902.
+My first contribution to Kaggle competitions. As of July 27, 2024, I am in **774th** position out of 4902 (TOP 20%).
 
 ## Scores
 Date|Model|Score
