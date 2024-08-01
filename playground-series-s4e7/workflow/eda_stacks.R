@@ -20,7 +20,7 @@ create_boots <- function(bid) {
 
   train_df |>
     group_by(Response) |>
-    sample_n(size = min(response_counts$n) * 0.25) |>
+    sample_n(size = min(response_counts$n) * 0.5) |>
     ungroup() |>
     mutate(Bootstrap = bid, .before = 1)
 }
@@ -37,18 +37,18 @@ boots_df <- collapse::unlist2d(boots, idcols = FALSE)
 glimpse(boots_df)
 
 ## Save as parquet
-fs::dir_create("data/bootstraps")
+fs::dir_create("data/bootstraps_50pct")
 
 arrow::write_dataset(
   boots_df,
-  path = "data/bootstraps",
+  path = "data/bootstraps_50pct",
   format = "parquet",
   partitioning = "Bootstrap"
 )
 
 # EDA ----
 boots <-
-  arrow::open_dataset("data/bootstraps")
+  arrow::open_dataset("data/bootstraps_50pct")
 
 boots |>
   filter(Bootstrap == 1) |>
